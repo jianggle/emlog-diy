@@ -42,7 +42,9 @@ body{font:14px Microsoft YaHei;color:#444;background:#f6f6f6;position:relative}
     <dl ng-repeat="x in linklist" id="item{{x.sort_id}}">
       <dt>{{x.sort_name}}</dt>
       <ul>
-        <li ng-repeat="y in x.list"><a ng-href="{{y.siteurl}}" title="" target="_blank">{{y.sitename}}</a></li>
+        <li ng-repeat="y in x.list">
+          <a ng-href="{{y.siteurl}}" title="{{y.description}}" target="_blank">{{y.sitename}}</a>
+        </li>
       </ul>
     </dl>
   </div>

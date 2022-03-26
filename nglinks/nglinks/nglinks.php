@@ -2,10 +2,10 @@
 /*
 Plugin Name: 恋链不舍
 Version: 1.0
-Plugin URL：https://www.eqifei.net
+Plugin URL：https://jiangdesheng.com/
 Description: 此插件链接与官方系统链接不互通，不互通，不互通！！！
 Author: jianggle
-Author URL: https://www.eqifei.net
+Author URL: https://jiangdesheng.com/
 */
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 require_once 'nglinks_model.php';
