@@ -1,6 +1,6 @@
 ﻿# comment-ajax
 
-[emlog评论ajax提交方案](https://www.eqifei.net/post-465.html)，基于`emlog5.3.1`
+[emlog评论ajax提交方案](https://jiangdesheng.com/post-465.html)，基于`emlog5.3.1`
 
 推荐使用`方法二`，不用修改源代码，简单方便。
 

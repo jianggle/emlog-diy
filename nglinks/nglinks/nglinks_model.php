@@ -1,7 +1,7 @@
 <?php
 if(!defined('EMLOG_ROOT')) {exit('error!');}
   //分类：列表
-  function getLinkSort() {
+  function getLinkSort($iFrontend = false) {
     global $tables;
     $DB = MySql::getInstance();
     $linksort = array();
@@ -10,7 +10,11 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
       $row['linksort_name'] = htmlspecialchars($row['linksort_name']);
       $row['linksort_id'] = intval($row['linksort_id']);
       $row['taxis'] = intval($row['taxis']);
-      $row['num'] = getJgLinkNum($condition = "WHERE linksortid in (".$row['linksort_id'].")");
+      if($iFrontend){
+        $row['num'] = getJgLinkNum("WHERE linksortid in (".$row['linksort_id'].") AND hide='n'");
+      }else{
+        $row['num'] = getJgLinkNum("WHERE linksortid in (".$row['linksort_id'].")");
+      }
       $linksort[] = $row;
     }
     return $linksort;
@@ -72,7 +76,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
   function getJgLinkNum($condition = '') {
     global $tables;
     $DB = MySql::getInstance();
-        $data = $DB->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "nglink $condition");
+    $data = $DB->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "nglink $condition");
     return $data['total'];
   }
 /*

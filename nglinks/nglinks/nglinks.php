@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: 恋链不舍
+Plugin Name: 念链不忘
 Version: 1.0
 Plugin URL：https://jiangdesheng.com/
 Description: 此插件链接与官方系统链接不互通，不互通，不互通！！！
@@ -12,8 +12,8 @@ require_once 'nglinks_model.php';
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 //挂载到侧栏菜单
 function nglinks_menu(){
-  echo '<div class="sidebarsubmenu" id="nglinks_menu1"><a href="./plugin.php?plugin=nglinks#/linksort">恋链不舍的分类</a></div>';
-  echo '<div class="sidebarsubmenu" id="nglinks_menu2"><a href="./plugin.php?plugin=nglinks#/links">恋链不舍的链接</a></div>';
+  echo '<div class="sidebarsubmenu" id="nglinks_menu1"><a href="./plugin.php?plugin=nglinks#/linksort">念链不忘的分类</a></div>';
+  echo '<div class="sidebarsubmenu" id="nglinks_menu2"><a href="./plugin.php?plugin=nglinks#/links">念链不忘的链接</a></div>';
 }
 addAction('adm_sidebar_ext', 'nglinks_menu');
   //判断登录

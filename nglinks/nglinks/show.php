@@ -1,3 +1,9 @@
+<?php 
+  if(!defined('EMLOG_ROOT')) {
+    header("HTTP/1.1 404 Not Found");
+    exit();
+  }
+?>
 <!doctype html>
 <html lang="zh-cn">
 <head>
@@ -7,7 +13,7 @@
 <meta http-equiv="Cache-Control" content="no-siteapp"/>
 <meta name="renderer" content="webkit">
 <meta name="robots" content="noindex, nofollow">
-<title>链接</title>
+<title>念链不忘</title>
 <meta name="keywords" content=""/>
 <meta name="description" content=""/>
 <link rel="shortcut icon" href="favicon.ico"/>
@@ -24,33 +30,55 @@ body{font:14px Microsoft YaHei;color:#444;background:#f6f6f6;position:relative}
 .nav-left li{display:block;padding:10px 0;text-align:center;color:#fff;border-bottom:1px solid #fff;cursor:pointer}
 .nav-left li:hover, .nav-left li.current{border-left:5px solid #3a6ea5;background:#fff;color:#3a6ea5}
 .nav-right{margin-left:160px;}
-.nav-right > dl{overflow:hidden;margin-bottom:20px}
-.nav-right > dl dt{width:140px;padding:10px;background:#3a6ea5;color:#fff}
-.nav-right > dl ul{margin-right:-1%}
-.nav-right > dl ul li{float:left;width:19%;margin:1% 1% 0 0;padding:15px;font-size:12px;overflow:hidden;background:#fff;color:#aaa;}
-.nav-right > dl ul li a{display:block;font-weight:700;color:#3a6ea5;}
-.nav-right > dl ul li a:hover{color:#f00;}
+.link-group{overflow:hidden;margin-bottom:20px}
+.link-group h3{width:140px;padding:10px;background:#3a6ea5;color:#fff;font-size:16px;font-weight:normal}
+.link-group ul{margin-right:-1%}
+.link-group ul dl{float:left;width:19%;margin:1% 1% 0 0;padding:14px;font-size:12px;overflow:hidden;background:#fff;color:#aaa;}
+.link-group ul dl a{display:block;color:#666;}
+.link-group ul dl a dt{
+  font-size:14px;
+  font-weight:700;
+  color:#3a6ea5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.link-group ul dl a:hover dt{color:#f00;}
+.link-group ul dl a dd{
+  margin-top:6px;
+  height:32px;
+  line-height:16px;
+  word-break:break-all;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 </style>
 </head>
 
-<body ng-app="myApp">
+<body ng-app="linkApp">
 <div class="w1200" ng-controller="linksCtrl">
   <div class="nav-left">
     <li ng-repeat="x in linksort" repeat-finish="navGo()" sid="{{x.linksort_id}}">{{x.linksort_name}}({{x.num}})</li>
   </div>
   <div class="nav-right">
-    <dl ng-repeat="x in linklist" id="item{{x.sort_id}}">
-      <dt>{{x.sort_name}}</dt>
+    <div ng-repeat="x in linklist" class="link-group" id="item{{x.sort_id}}">
+      <h3>{{x.sort_name}}</h3>
       <ul>
-        <li ng-repeat="y in x.list">
-          <a ng-href="{{y.siteurl}}" title="{{y.description}}" target="_blank">{{y.sitename}}</a>
-        </li>
+        <dl ng-repeat="y in x.list">
+          <a ng-href="{{y.siteurl}}" title="{{y.description}}" target="_blank">
+            <dt>{{y.sitename}}</dt>
+            <dd>{{y.description}}</dd>
+          </a>
+        </dl>
       </ul>
-    </dl>
+    </div>
   </div>
 </div>
 <script>
-angular.module('myApp', [])
+angular.module('linkApp', [])
 .directive('repeatFinish', function(){
   return {
     link: function(scope,element,attr){
@@ -61,12 +89,8 @@ angular.module('myApp', [])
   }
 })
 .controller("linksCtrl", function($scope,$http){
-  $http.get("index.php?plugin=nglinks&a=linksort").success(function(res){
-    $scope.linksort = res;
-  })
-  $http.get("index.php?plugin=nglinks&a=links").success(function(res){
-    $scope.linklist = res;
-  })
+  $scope.linksort = <?php echo $linksort;?>;
+  $scope.linklist = <?php echo $links;?>;
   $scope.navGo = function(){
     $(".nav-left li").click(function(){
       $(this).addClass("current")

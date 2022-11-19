@@ -1,5 +1,5 @@
 ﻿## rootlinks
-[emlog友链分类管理](https://www.eqifei.net/emlog-link-sort.html)，基于emlog5.3.1（需更改源代码）
+[emlog友链分类管理](https://jiangdesheng.com/emlog-link-sort.html)，基于emlog5.3.1（需更改源代码）
 
 ### 数据库改动
 
